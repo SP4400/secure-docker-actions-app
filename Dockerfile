@@ -6,7 +6,7 @@ USER secureuser
 # setting up the working directory for the container
 WORKDIR /app
 #copy the requirements.txt to the container
-COPY requirements.txt .
+COPY app/requirements.txt .
 #install the requirements.txt
 RUN pip install -r --no-cache-dir requirements.txt
 
