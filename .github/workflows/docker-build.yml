@@ -1,3 +1,4 @@
+name: docker-build
 on:
     push:
         branches:
@@ -37,6 +38,6 @@ jobs:
               if: success()
               run: |
                   docker push ${{ secrets.DOCKER_USERNAME }}/secure-app:latest
-                  
+
 
             
