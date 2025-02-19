@@ -1,7 +1,7 @@
 #using a python slim image for security
 FROM python:3.14.0a5-alpine3.21
 #update system packages to fix vulnerabilities
-RUN apt-get update && apt-get install --only-upgrade zlib1g -y && apt-get upgrade -y && apt-get autoremove -y && apt-get clean
+RUN apt-get update && apt-get upgrade -y
 #set a non root user for security to run the container
 RUN useradd -m secureuser
 USER secureuser
