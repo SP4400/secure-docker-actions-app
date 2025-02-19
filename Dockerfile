@@ -1,5 +1,5 @@
 #using a python slim image for security
-FROM python:3.14-rc-slim-bookworm
+FROM python:3.14-rc-bookworm
 #update system packages to fix vulnerabilities
 RUN apt-get update && apt-get install --only-upgrade zlib1g -y && apt-get upgrade -y && apt-get autoremove -y && apt-get clean
 #set a non root user for security to run the container
