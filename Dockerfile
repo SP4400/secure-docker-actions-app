@@ -1,9 +1,7 @@
 #using a python slim image for security
 FROM python:3.9-slim-bookworm
 #update system packages to fix vulnerabilities
-RUN apt-get update --allow-releaseinfo-change && apt-get install -y apt-transport-https ca-certificates && apt-get upgrade -y && apt-get clean
-RUN apt-get remove --purge zlib1g -y
-RUN apt-get remove --purge perl-base -y
+RUN apt-get update && apt-get install --only-upgrade zlib1g -y && apt-get upgrade -y && apt-get autoremove -y && apt-get clean
 #set a non root user for security to run the container
 RUN useradd -m secureuser
 USER secureuser
