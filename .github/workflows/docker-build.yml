@@ -46,6 +46,21 @@ jobs:
               if: success()
               run: |
                   docker push ${{ secrets.DOCKER_USERNAME }}/secure-app:latest
+    docker-deploy:
+        runs-on: ubuntu-latest
+        needs: docker-build
+        steps:
+            - name: checkout for getting code in runner
+              uses: actions/checkout@v4
 
-
-            
+            - name: ssh to the instance
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.EC2_HOST }}
+                  username: ${{ secrets.EC2_USERNAME}}
+                  key: ${{ secrets.EC2_KEY}}
+                  script: |
+                    docker stop secure-app || true
+                    docker rm secure-app || true
+                    docker pull ${{ secrets.DOCKER_USERNAME}}/secure-app:latest
+                    docker run -d -p 5000:5000 --name secure-app ${{secrets.docker_username}}/secure-app:latest         
