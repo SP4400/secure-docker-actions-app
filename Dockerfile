@@ -1,5 +1,5 @@
 #using a python slim image for security
-FROM python:3.14.0a5-alpine3.21
+FROM python:3.14.0rc3-alpine3.21
 #update system packages to fix vulnerabilities
 #RUN apt-get update && apt-get upgrade -y
 #set a non root user for security to run the container
